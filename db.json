@@ -1,0 +1,2040 @@
+{
+  "schema": 2,
+  "generated_at": 1795277692,
+  "source": "Gentoo Portage profile masks plus curated new-user explanations",
+  "messages": {
+    "header": "gentoo explain: {package}",
+    "no_mask": [
+      "No package.mask entry in the downloaded database matched this package.",
+      "If emerge still calls it masked, check the exact emerge message: it may be a keyword mask, a mask in your local /etc/portage, or a mask added after this database was built."
+    ],
+    "mask_block": "masked by: {source}\n  atom:   {atom}\n  file:   {file}\n  reason: {reason}",
+    "related_header": "Related local entries:",
+    "related_item": "  {kind}: {atom} ({file})",
+    "meaning": [
+      "What this means:",
+      "  Portage is refusing this package on purpose. That is different from a download failure."
+    ],
+    "check_header": "Check it first:",
+    "check_command": "  emerge --ask --verbose {package}",
+    "steps_header": "If you still want it:",
+    "steps": [
+      "  1. Read the mask reason before changing anything.",
+      "  2. Put the exact atom in /etc/portage/package.unmask if it is hard-masked.",
+      "  3. Put the exact atom in /etc/portage/package.accept_keywords if emerge says the keyword is missing.",
+      "  4. Re-run the emerge command and read the next message."
+    ],
+    "fetched": "Database downloaded to {path} with {count} entries.",
+    "built": "Local Portage entries merged; database now has {count} entries at {path}.",
+    "missing": "No database at {path}. Run: gentoo explain db fetch",
+    "guides_header": "Available explanations:",
+    "guide_item": "  {key}  {title}",
+    "guide_missing": "No explanation named {name}. Run: gentoo explain guides"
+  },
+  "tips": [
+    {
+      "title": "Hard mask vs keyword mask:",
+      "body": "  A hard mask lives in package.mask and means the distro or your config says no.\n  A keyword mask means the package is not marked stable for your architecture.\n  They need different fixes, so read the emerge message carefully."
+    },
+    {
+      "title": "Use exact atoms:",
+      "body": "  Prefer =category/package-version over a bare package name when unmasking.\n  That limits the change to one version and makes later undo easy."
+    },
+    {
+      "title": "Before unmasking:",
+      "body": "  Read the mask comment, check USE flags with emerge --verbose, and remember that masks often exist for broken builds or security reasons."
+    },
+    {
+      "title": "Downloaded DB vs local DB:",
+      "body": "  The downloaded database covers Gentoo profile masks. Run `gentoo explain db build` to merge your own /etc/portage entries into the local copy."
+    },
+    {
+      "title": "Offline use:",
+      "body": "  Run `gentoo explain db fetch` once while online. After that every `gentoo explain masked <package>` lookup reads only the local compressed database."
+    },
+    {
+      "title": "Read the whole emerge error:",
+      "body": "  The last line is often only a summary. The useful line is usually the first ERROR or the blocked package list above it."
+    },
+    {
+      "title": "Dry run before changing config:",
+      "body": "  Use --ask so Portage shows the plan before it changes the system.\n  Example: emerge --ask --verbose <package>"
+    },
+    {
+      "title": "One change at a time:",
+      "body": "  Change one mask, keyword, or USE flag, then rerun emerge.\n  That makes it obvious which edit fixed or broke things."
+    },
+    {
+      "title": "Keep a config backup:",
+      "body": "  Copy /etc/portage before a bigger change.\n  Example: sudo cp -a /etc/portage /etc/portage.backup"
+    },
+    {
+      "title": "Use exact package atoms:",
+      "body": "  =category/package-version limits the change to one version.\n  category/package applies to the whole package and is broader."
+    },
+    {
+      "title": "Mask reason first:",
+      "body": "  The comment above a mask usually gives a removal date or bug number.\n  Read it before overriding the mask."
+    }
+  ],
+  "entries": [
+    {
+      "kind": "mask",
+      "atom": "x11-themes/gentoo-artwork",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Jonas Stein <jstein@gentoo.org> (2026-11-14) Removal on 2026-12-14.  Bug #986570."
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-python/watchdog-7.1.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2026-11-09) Regressions causing test failures: https://github.com/gorakhargosh/watchdog/issues/1432"
+    },
+    {
+      "kind": "mask",
+      "atom": "<app-editors/emacs-31.1.9999:31-vcs",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Ulrich Müller <ulm@gentoo.org> (2026-11-08) Pretest versions, masked for testing."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-cpp/libjson-rpc-cpp",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2026-11-03) Low quality, unmaintained package.  No revdeps. Removal on 2026-12-03.  Bug #985546."
+    },
+    {
+      "kind": "mask",
+      "atom": "=media-video/makemkv-2.0.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "James Le Cuirot <chewi@gentoo.org> (2026-10-30) This version is widely reported to be broken. Upstream has been silent on the issue. Bug #983634."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-lang/ruby:3.2",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Alfred Wingate <parona@protonmail.com> (2026-10-25) Ruby 3.2 is no longer supported upstream and will no longer receive security updates. This mask also includes any remaining ruby32-only packages."
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-libs/Ice-3.7.10-r1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "app-admin/fluentd",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/blinkstick",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday-httpclient",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday-patron",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday-rack",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday_middleware-multi_json",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday_middleware",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday-net_http_persistent:1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday-retry:1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday:1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday-net_http:1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/faraday-net_http:2",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/io-event:1.1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-ruby/rantly:2",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "net-misc/mikutter",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/File_Iterator",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michael Orlitzky <mjo@gentoo.org> (2026-10-24) dev-php packages that were added to support composer, phpunit, etc. and are now abandoned. All are outdated and several have known security issues. Removal on 2026-12-01 if no one complains."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/SabreAMF",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/Text_Template",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/ca-bundle",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/cli-prompt",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/doctrine",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/doctrine-instantiator",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/fedora-autoloader",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/jsonlint",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/json-schema",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/metadata-minifier",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/mmslib",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/myclabs-deepcopy",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/nikic-php-parser",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/phar-io-manifest",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/phar-io-version",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/phar-utils",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/psr-log",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/reactphp-promise",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/sebastian-code-unit-reverse-lookup",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/sebastian-complexity",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/sebastian-diff",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/sebastian-environment",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/sebastian-lines-of-code",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/sebastian-resource-operations",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/sebastian-type",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/sebastian-version",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/semver",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/spdx-licenses",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/symfony-filesystem",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/symfony-finder",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/symfony-process",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/theseer-Autoload",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/theseer-DirectoryScanner",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/theseer-tokenizer",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/twig",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/webmozart-assert",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/xdebug-handler",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/zetacomponents-Base",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-php/zetacomponents-ConsoleTools",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "net-irc/hexchat",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "David Seifert <soap@gentoo.org> (2026-10-24) Upstream abandoned, GTK+2 based, blocks openssl-4 migration. net-irc/zoitechat is a maintained GTK+3 fork, please switch to that. Removal on 2026-11-23. Bug #977173."
+    },
+    {
+      "kind": "mask",
+      "atom": "net-misc/openssh-contrib",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "David Seifert <soap@gentoo.org> (2026-10-24) Unmaintained, blocks openssl-4 transition, tons of bugs, X.509 + HPN patches are a lost cause. For X.509, use net-misc/pkixssh. HPN-SSH is not packaged as a separate fork, and requires a dedicated commitment. Removal on 2026-11-23. Bug #978473."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-python/pythondialog",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2026-10-22) Not ported to py3.13.  No revdeps. Removal on 2026-11-21.  Bug #952389."
+    },
+    {
+      "kind": "mask",
+      "atom": "sci-mathematics/gsl-shell",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2026-10-22) Not ported to py3.13.  Ton of other bugs reported, including build failures and a version bump request. Removal on 2026-11-21.  Bug #952686."
+    },
+    {
+      "kind": "mask",
+      "atom": "mail-client/alot",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2026-10-22) Not ported to py3.13.  Indirectly depends on dev-python/sphinx that dropped py3.12 support. Removal on 2026-11-21.  Bug #956588."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-python/entrypoints",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-10-22) Replaced by importlib, no reverse dependencies (bug #984696). Removal on 2026-11-22."
+    },
+    {
+      "kind": "mask",
+      "atom": ">=app-text/podofo-1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-10-20) Breaks one of its major reverse dependencies, so mask for now as nothing needs a newer version yet (bug #984580)."
+    },
+    {
+      "kind": "mask",
+      "atom": "media-tv/linuxtv-dvb-apps",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Eli Schwartz <eschwartz@gentoo.org> (2026-10-18) Unmaintained in gentoo, formally abandoned upstream in favor of media-libs/libv4l[dvb]. Sources no longer available upstream. Fails to build with modern gcc. Removal on 2026-11-17.  Bug #969753."
+    },
+    {
+      "kind": "mask",
+      "atom": "app-admin/awscli-bin",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Arthur Zamarin <arthurzam@gentoo.org> (2026-10-18) The built from source package, app-admin/awscli, can be used now. Removal on 2026-11-17.  Bug #984525."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-python/toml-fmt-common",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2026-10-13) Part of removed dev-python/pyproject-fmt.  No revdeps left. Removal on 2026-11-12.  Bug #984202."
+    },
+    {
+      "kind": "mask",
+      "atom": "media-gfx/fotema",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2026-10-13) The package is bloated and hostile to downstream packaging.  The two latest upstream releases don't build because of various issues. Removal on 2026-11-12.  Bug #984201."
+    },
+    {
+      "kind": "mask",
+      "atom": "www-client/opera-beta",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Matt Jolly <kangie@gentoo.org> (2026-10-09) Dropped upstream, use www-client/opera or www-client/opera-developer. Removal on 2026-11-09. Bug #983935."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-lang/tuprolog",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Volkmar W. Pogatzki <gentoo@pogatzki.net> (2026-10-08) Blocks removal of vulnerable old slot of dev-java/commons-lang:3.6 Nothing depends on it. HOMEPAGE is unresponsive. SRC_URI is hosted in a devspace which does no longer exist. Removal on 2026-11-08.  Bug #938231."
+    },
+    {
+      "kind": "mask",
+      "atom": "net-misc/ntp",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Jaco Kroon <jkroon@gentoo.org> (2026-10-06) Unmaintained, abandoned by maintainer. You can look at net-misc/ntpsec or net-misc/chrony as replacement. See also: https://wiki.gentoo.org/wiki/Network_Time_Protocol Removal on 2027-01-04. Bug #962880, and many more."
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-python/pyqt6-6.12*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Ionen Wolkens <ionen@gentoo.org> (2026-10-01) Masked for testing the new .0 version and leave time for packages to catch up on support. Will likely be kept masked until 6.12.1 is released unless there is a notable reason to need this earlier. If wanted, feel welcome to add `dev-qt/*:6/6.12.0` to package.unmask and report issues. Note: qtwebengine was \"split\" from Qt's main packaging and is now versioned as 6.<chromium-major>.<patch> (6.140.0 here), for now it is included in this mask (unmask with dev-qt/qtwebengine:6/6.140.0), but in the future it will be treated separately given it is not pinned and e.g. 6.140.0 can be used with Qt 6.11.x (aka not just 6.12.x)."
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-python/pyqt6-pdf-6.140*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-python/pyqt6-webengine-6.140*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-python/pyside-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qt-docs-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qt3d-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qt5compat-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtbase-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtcharts-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtconnectivity-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtdeclarative-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtgraphs-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qthttpserver-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtimageformats-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtlanguageserver-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtlocation-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtmultimedia-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtnetworkauth-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtpositioning-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtquick3d-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtquicktimeline-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtremoteobjects-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtscxml-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtsensors-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtserialbus-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtserialport-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtshadertools-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtspeech-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtsvg-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qttasktree-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qttools-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qttranslations-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtvirtualkeyboard-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtwayland-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtwebchannel-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtwebengine-6.140.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtwebsockets-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-qt/qtwebview-6.12.0*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "www-apps/drupal:11.2.14",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Viorel Munteanu <ceamac@gentoo.org> (2026-09-27) Drupal 11.2.x is EOL, no longer receives security updates. Keeping it in tree only to help upgrading from 10.6.x to 11.3.x. Upgrading directly from 10.6 to 11.3 can result in this error: Uncaught PHP Exception TypeError: \\ \"Drupal\\\\Core\\\\Utility\\\\ThemeRegistry::getPreprocessInvokes(): \\ Return value must be of type array, null returned\" Will be removed when 10.6.x reaches end of life (after December 2026)."
+    },
+    {
+      "kind": "mask",
+      "atom": "<www-client/chromium-151.0.7922.169-r1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-09-24) Increasingly challenging to maintain with increased release cadence, upstream toolchain changes, and conflicts between trying to provide a consistent experience for Gentoo users (avoiding bundled where possible) vs. getting updates out in a timely manner.  Many unfixed vulnerabilities. Keeping it in ::gentoo isn't a matter of just supplying an updated ebuild, but a commitment to keeping it up to date and finding a compromise between users' expectations (like various USE flags & not forcing all bundled components) and maintainability. Still supported packages include: www-client/google-chrome variants Other chromium-based browsers: www-client/microsoft-edge www-client/opera www-client/vivaldi qtwebengine-based browsers (uses chromium's engine): kde-apps/konqueror www-client/falkon www-client/qutebrowser Other browsers: www-client/firefox and www-client/firefox-bin www-client/seamonkey Removal on 2026-10-24.  Bug #982204."
+    },
+    {
+      "kind": "mask",
+      "atom": "=media-gfx/imagemagick-6*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-09-24) ImageMagick 6 only receives security fixes now upstream and already suffers serious bugs. EOL announcement: https://github-stories.com/2026/imagemagick-6-end-of-life-announcement/ Please upgrade to ImageMagick 7."
+    },
+    {
+      "kind": "mask",
+      "atom": "~net-print/libcupsfilters-2.2.1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-09-22) Substantial rewrite to drop qpdf->pdfio has introduced some bugs, too many fixes to backport and some aren't fixed at all yet (bug #983080, and tagged onto bug #981565 too)."
+    },
+    {
+      "kind": "mask",
+      "atom": ">=dev-build/cmake-4.4.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-09-08) Changes ctest(1) behaviour to exit non-zero if no tests, which may break many ebuilds. Needs some assessment."
+    },
+    {
+      "kind": "mask",
+      "atom": "sci-physics/espresso",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "David Seifert <soap@gentoo.org> (2026-09-07) Unmaintained, lots of FetchContent_* hacks. Removal on 2026-10-07. Bug #927149."
+    },
+    {
+      "kind": "mask",
+      "atom": "<app-editors/emacs-32.0.9999:32-vcs",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Ulrich Müller <ulm@gentoo.org> (2026-08-31) Snapshot versions, masked for testing."
+    },
+    {
+      "kind": "mask",
+      "atom": "=sys-boot/shim-16.1_p8",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Nowa Ammerlaan <nowa@gentoo.org> (2026-08-06) This version was pulled from upstream. The reason for this is unclear. But masked just as a precaution. Bug #980367."
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-embedded/ponyprog-3.1.4_p20250501-r0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Andreas Sturmlechner <asturm@gentoo.org> (2026-07-07) dev-embedded/ponyprog destabilisation mask, bug #978907"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=dev-db/lmdb-1.0.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Eray Aslan <eras@gentoo.org> (2026-07-06) Introduces backwards breaking change. Mask until downstreams adjust"
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-kernel/gentoo-sources-6",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2026-06-03) Mike Pagano <mpagano@gentoo.org> (2026-06-03) Support for 5.10.x and 5.15.x kernels in Gentoo is being discontinued. These kernel branches differ so much from the mainline kernel that security patches are frequently delayed or never backported upstream at all.  The need for proactive downstream backporting creates a lot of maintenance effort for us, and we neither feel confident with correctness, nor with completeness of our backports. Users can still download kernel sources from upstream repositories if necessary. Bug #976694.  Removal on 2026-07-03."
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-kernel/gentoo-kernel-6",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-kernel/gentoo-kernel-bin-6",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-kernel/vanilla-sources-6",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-kernel/vanilla-kernel-6",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<virtual/dist-kernel-6",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=sys-auth/elogind-255.26",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-06-02) Fails to start (bug #976623)"
+    },
+    {
+      "kind": "mask",
+      "atom": "=sys-auth/elogind-257.15",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "media-libs/svgalib",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "David Seifert <soap@gentoo.org> (2026-05-30) Last update 25 years ago, stuck on linux-mod.eclass, lots of QA issues, doesn't build on recent kernels. Removal on 2026-06-29. Bug #908712."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-cpp/eigen:3/5.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Paul Zander <negril.nx+gentoo@gmail.com> (2025-10-17) to many breakages"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-util/jenkins-bin-2.561",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-05-17) Tries to delete many files (bug #975236)"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=dev-util/pwntools-4.15.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-05-05) dev-debug/pwndbg itself needs >=dev-util/unicorn-2.1.4, while pwndbg also depends on dev-util/pwntools which needs <dev-util/unicorn-2.1.4. Mask to avoid Portage wasting time trying to find a solution, when the only one available is to downgrade."
+    },
+    {
+      "kind": "mask",
+      "atom": ">=sys-libs/ncurses-6.6_p20260411",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-04-17) app-misc/tmux fails to open with newer ncurses (bug #972804)"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=sys-fs/quotatool-1.7.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-03-30) >=1.7.0 is an LLM-driven revamp of the project."
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Crypt-OpenSSL-RSA-0.370.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-03-22) Commits since the last release of Crypt-OpenSSL-RSA (0.370) are heavily driven by LLM automation. Avoid exposing users to this (bug #971488). Sadly, other dists by the same maintainers upstream are also affected, and so these are included here too."
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/B-COW-0.7.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Business-UPS-2.20.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/CDB_File-1.50.0-r1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Clone-0.470.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Crypt-RIPEMD160-0.80.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/IO-Stty-0.40.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/IO-Tty-1.200.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/IPC-Run-20250809.0.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Net-Daemon-0.490.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Net-Ident-1.250.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Safe-Hole-0.140.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Schedule-Cron-Events-1.960.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Sys-Mmap-0.200.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/Template-Toolkit-3.102.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/TimeDate-2.330.0-r1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/XML-Parser-2.470.1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/XString-0.5.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">dev-perl/YAML-Syck-1.360.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=dev-lang/tcl-9",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Alfredo Tupone <tupone@gentoo.org> (2026-03-05) Need more testing"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=dev-lang/tk-9",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=net-wireless/soapysdrplay-20000000",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Thomas Beierlein <tomjbe@gentoo.org> (2026-02-14) Move ebuild versioning to classical x.y.z number scheme Should be kept until net-wireless/sdrplay-3.15.2 (dep for coming new version) gets stable."
+    },
+    {
+      "kind": "mask",
+      "atom": "<=gui-libs/aquamarine-0.9.3",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2026-02-09) This suite of packages is currently best placed in an overlay/external repository where users can more easily contribute. The ecosystem moves quickly and users expect even the live ebuilds to be updated apace. The rate of change as well as new packages requiring review places a heavy combined with users (not unreasonably) wanting fresh versions of the software places strain on the proxy-maint team. Pressure being put on proxied maintainers to create and quickly have PRs merged doesn't facilitate the level of testing for ::gentoo either. An unofficial 'hyproverlay' repository has been created at https://codeberg.org/hyproverlay/hyproverlay.git for communal maintenance of these packages as well as several new (unpackaged in ::gentoo) dependencies. It can be enabled with: $ emerge -an app-eselect/eselect-repository $ eselect repository enable hyproverlay $ emerge --sync See also https://wiki.gentoo.org/wiki/Hyprland#Emerge Quite out-of-date, many open bugs, and needs several new dependencies. Removal on 2026-03-11."
+    },
+    {
+      "kind": "mask",
+      "atom": "<=gui-libs/hyprutils-0.8.4",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<=gui-libs/hyprland-qt-support-0.1.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<=gui-libs/hyprcursor-0.1.13",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<=dev-util/hyprwayland-scanner-0.4.5",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<=dev-libs/hyprlang-0.6.4",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<=dev-libs/hyprland-protocols-0.6.4",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<=dev-libs/hyprgraphics-0.1.5",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<=gui-wm/hyprland-0.51.1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=gui-apps/slurp-1.6.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Arthur Zamarin <arthurzam@gentoo.org> (2026-02-06) Marked as pre-release post release itself. Released without maintainer ACK. See-Also: https://github.com/emersion/slurp/issues/187 Bug #969685"
+    },
+    {
+      "kind": "mask",
+      "atom": "=mail-mta/postfix-3.12*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Eray Aslan <eras@gentoo.org> (2025-12-24) Mask experimental software"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=app-text/calibre-8.11.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Eli Schwartz <eschwartz@gentoo.org> (2025-12-15) This version has lit a firecracker under the community and attracted some ire. The situation is in a state of mild flux, and more generally requires further consideration to determine the correct course of action. Use at your own risk. See bug #969475."
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-util/librnp-0.18.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2025-11-25) Generates session keys with weak (no) randomness. Please re-encrypt any data/messages using this librnp version. <0.18 is fine as is >=0.18.1. See bug #966299."
+    },
+    {
+      "kind": "mask",
+      "atom": "=sys-kernel/linux-firmware-20250917",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2025-09-21) Breaks (common) mt7921e WiFi driver with a hang in many cases, affecting not just network. See bug #963106."
+    },
+    {
+      "kind": "mask",
+      "atom": "=sys-kernel/linux-firmware-20251011",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=app-crypt/libsecret-0.21.7-r1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2025-06-29) File collision against gnome-base/gnome-keyring[pam], which is required via pambase.  Masked until the maintainer determines a good solution.  Bug #959274."
+    },
+    {
+      "kind": "mask",
+      "atom": ">=sys-devel/gettext-0.24",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.ogr> (2025-06-08) Masked for testing (bug #957583)."
+    },
+    {
+      "kind": "mask",
+      "atom": ">=dev-libs/libintl-0.24",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-cpp/glog-0.7.1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2025-05-26) Breaks some reverse dependencies and is abandoned upstream (bug #956630)."
+    },
+    {
+      "kind": "mask",
+      "atom": "=app-i18n/ibus-anthy-1.5.17",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2025-05-23) Severe memory leak (bug #953874)"
+    },
+    {
+      "kind": "mask",
+      "atom": "=app-misc/screen-5*",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Norbert Norbiros <norbiros@protonmail.com> (2025-04-01) Screen v5.0.0 has a lot of regressions https://lists.gnu.org/archive/html/screen-devel/2024-10/msg00007.html Unmask it after it is properly tested & fixed"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=app-office/orage-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2025-03-17) Xfce 4.22 prereleases.  Masked because they tend to be quite unstable."
+    },
+    {
+      "kind": "mask",
+      "atom": ">=dev-build/xfce4-dev-tools-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/exo-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/garcon-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/libxfce4ui-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/thunar-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/tumbler-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/xfce4-appfinder-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/xfce4-panel-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/xfce4-power-manager-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/xfce4-session-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/xfce4-settings-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=xfce-base/xfconf-4.21",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=app-antivirus/lkrg-0.9.9",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "John Helmert III <ajak@gentoo.org> (2025-03-02) Doesn't seem to cleanly load, see: https://github.com/lkrg-org/lkrg/issues/364"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-libs/liborcus-0.20.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2025-02-22) (Only) needed for no-yet-released LibreOffice. Mask for now to avoid unnecessary conflicts/backtracking for LO users."
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-libs/libixion-0.20.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "=dev-util/mdds-3.0.0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=x11-themes/fluent-icon-theme-2025.02.10",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Maciej Barć <xgqt@gentoo.org> (2025-02-12) Masked for testing. Fails to update from previous version. See bug #949626."
+    },
+    {
+      "kind": "mask",
+      "atom": "x11-drivers/nvidia-drivers:0/470",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Ionen Wolkens <ionen@gentoo.org> (2024-11-19) NVIDIA dropped support for the 470.xx branch in September 2024[1]. Users are free to unmask and keep using, but be warned it is very likely to be affected by security issues[2] as NVIDIA does not track nor fix these for this branch anymore. Gentoo will keep it packaged for as long as reasonably possible (albeit masked) but no true support will be given nor patches for newer kernels. It is recommended to use 6.6.x LTS kernels or older (6.6.x will be supported upstream until December 2026, and 6.1.x a year further to December 2027). Major issues will lead to removal without further warning, e.g. if no usable kernels left in tree, or if broken with a newer Xorg. >> It is recommended to switch to nouveau[3] drivers (regardless of its worse performance), or ideally replace the hardware. [1] https://nvidia.custhelp.com/app/answers/detail/a_id/3142 https://nvidia.custhelp.com/app/answers/detail/a_id/5202 [2] https://bugs.gentoo.org/942031#c7 [3] https://wiki.gentoo.org/wiki/Nouveau"
+    },
+    {
+      "kind": "mask",
+      "atom": "app-emulation/virtualbox-kvm",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Viorel Munteanu <ceamac@gentoo.org> (2024-10-18) Experimental version, for testing purposes only. Bug #941566."
+    },
+    {
+      "kind": "mask",
+      "atom": "~sys-boot/plymouth-24.004.60",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Nowa Ammerlaan <nowa@gentoo.org> (2024-10-05) This version is known to break on certain systems. At the same time it fixes several reported issues. Masked until we can work out how to resolve the situation. See also: https://github.com/gentoo/gentoo/pull/36091"
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-devel/gcc-11",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2024-09-30) GCC 12 and older no longer receive upstream support or fixes for bugs. Please switch to a newer GCC version using gcc-config. The earliest supported version of GCC is GCC 13, but 11/12 remain unmasked for now to ease sys-devel/gcc[d] bootstrapping."
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-devel/kgcc64-11",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": ">=dev-libs/libassuan-3.0.1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2024-06-25) The symbol versioning \"fix\" breaks anything built with 3.0.0."
+    },
+    {
+      "kind": "mask",
+      "atom": "x11-drivers/nvidia-drivers:0/390",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Ionen Wolkens <ionen@gentoo.org> (2023-03-30) NVIDIA dropped support for the 390.xx branch in December 2022[1]. Users are free to unmask and keep using, but be warned it is very likely to be affected by security issues as NVIDIA does not track nor fix these for this branch anymore. Gentoo will keep it packaged for as long as reasonably possible (albeit masked) but no true support will be given nor patches for newer kernels. It is recommended to use 6.1.x LTS kernels or older (6.1.x will be supported upstream until December 2027). Major issues will lead to removal without further warning, e.g. if no usable kernels left in tree, or if broken with a newer Xorg. >> It is recommended to switch to nouveau[2] drivers (regardless of its worse performance), or ideally replace the hardware. [1] https://nvidia.custhelp.com/app/answers/detail/a_id/3142 [2] https://wiki.gentoo.org/wiki/Nouveau"
+    },
+    {
+      "kind": "mask",
+      "atom": "~sci-physics/bullet-3.22b",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Joonas Niilola <juippis@gentoo.org> (2022-04-29) Apparently the \"b\" in version means \"beta\". 3.24 is available, we should update to that. #841437"
+    },
+    {
+      "kind": "mask",
+      "atom": "x11-drivers/nvidia-drivers:0/vulkan",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Ionen Wolkens <ionen@gentoo.org> (2021-10-09) Vulkan beta driver branch aimed at Vulkan developers for testing new features. Beside vulkan, it is typically behind the main branch and may be buggier or less secure. Only unmask if really wanted."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-build/automake:1.11",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Andreas K. Hüttel <dilfridge@gentoo.org> (2021-09-18) dev-build/automake version 1.11 is EOL and is only useful for testing old de-ANSI-fication/ansi2knr/AM_C_PROTOTYPES code. Please uninstall."
+    },
+    {
+      "kind": "mask",
+      "atom": ">=media-libs/libopenaptx-0.2.1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2021-07-06) Upstream changed license to GPL-3+ in order to deliberately cause incompatiblity with revdep licenses.  Mask until the situation is resolved.  Bug #791259."
+    },
+    {
+      "kind": "mask",
+      "atom": "=media-fonts/culmus-0.133-r1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2021-03-30) Seems to break dev-tex/culmus-latex Masking until we can investigate & fix bug #737406"
+    },
+    {
+      "kind": "mask",
+      "atom": "~net-misc/openntpd-6.8_p1",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2021-03-03) Doesn't seem to sync clock correctly in some cases. bug #772998"
+    },
+    {
+      "kind": "mask",
+      "atom": "media-plugins/kodi-game-libretro-nestopia",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michał Górny <mgorny@gentoo.org> (2020-11-10) This old Kodi version requires vulnerable dev-python/pillow and prevents users from upgrading.  Masked for the time being. Bug #729672."
+    },
+    {
+      "kind": "mask",
+      "atom": "media-plugins/kodi-game-libretro-dosbox",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "~net-libs/libnsl-0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Andreas K. Hüttel <dilfridge@gentoo.org> (2018-09-11) Mask transition ebuilds that were needed only for <glibc-2.26 We will keep them in the tree as long as we have masked <glibc-2.26."
+    },
+    {
+      "kind": "mask",
+      "atom": "~net-libs/rpcsvc-proto-0",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-libs/glibc-2.41-r10",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Andreas K. Hüttel <dilfridge@gentoo.org> (2017-05-21) (and others, updated later) These old versions of toolchain packages (binutils, gcc, glibc) are no longer officially supported and are not suitable for general use. Using these packages can result in build failures (and possible breakage) for many packages, and may leave your system vulnerable to known security exploits. If you still use one of these old toolchain packages, please upgrade (and switch the compiler / the binutils) ASAP. If you need them for a specific (isolated) use case, feel free to unmask them on your system."
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-libs/binutils-libs-2.44",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-devel/binutils-2.44",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "<sys-devel/binutils-hppa64-2.44",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "app-admin/amazon-ec2-init",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Michael Orlitzky <mjo@gentoo.org> (2017-01-07) This package has some dangerous quality and security issues, but people may still find it useful. It is masked to prevent accidental use. See bugs 603346 and 604998 for more information."
+    },
+    {
+      "kind": "mask",
+      "atom": "www-plugins/chrome-binary-plugins:unstable",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Mike Gilbert <floppym@gentoo.org> (2014-03-04) Dev channel releases are only for people who are developers or want more experimental features and accept a more unstable release."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-util/mingw64-runtime",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "Diego E. Pettenò <flameeyes@gentoo.org> (2009-01-03) These packages are not supposed to be merged directly, instead please use sys-devel/crossdev to install them."
+    },
+    {
+      "kind": "mask",
+      "atom": "sys-libs/newlib",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-embedded/avr-libc",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "sys-devel/nvptx-tools",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "sys-devel/clang-crossdev-wrappers",
+      "source": "/var/db/repos/gentoo/profiles/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-util/umockdev",
+      "source": "/var/db/repos/gentoo/profiles/arch/alpha/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/alpha/package.mask",
+      "reason": "Matt Turner <mattst88@gentoo.org> (2023-02-15) All tests hang on alpha See https://github.com/martinpitt/umockdev/issues/200"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-cpp/cpp-httplib",
+      "source": "/var/db/repos/gentoo/profiles/arch/arm/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/arm/package.mask",
+      "reason": "Alexey Sokolov <alexey+gentoo@asokolov.org> (2026-05-05) New versions dropped support for 32 bits. Bug #973312"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-debug/valgrind",
+      "source": "/var/db/repos/gentoo/profiles/arch/arm/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/arm/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2020-06-24) Valgrind lacks support for < ARMv7 https://valgrind.org/info/platforms.html"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-java/openjdk-bin:11",
+      "source": "/var/db/repos/gentoo/profiles/arch/arm/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/arm/package.mask",
+      "reason": "Georgy Yakovlev <gyakovlev@gentoo.org> (2019-06-22) This is built for armv7a and will not work on earlier generations."
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-java/openjdk-bin:17",
+      "source": "/var/db/repos/gentoo/profiles/arch/arm/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/arm/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/arch/arm/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-python/py-cpuinfo",
+      "source": "/var/db/repos/gentoo/profiles/arch/hppa/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/hppa/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2023-03-28) Needs explicit porting to each platform (bug 894078#c6)"
+    },
+    {
+      "kind": "mask",
+      "atom": "app-crypt/efitools",
+      "source": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "reason": "WANG Xuerui <xen0n@gentoo.org> (2022-12-05) sys-boot/gnu-efi applications that need porting (sbsigntools & refind) or is abandoned upstream (elilo)"
+    },
+    {
+      "kind": "mask",
+      "atom": "app-crypt/pesign",
+      "source": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/arch/loong/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "app-crypt/sbsigntools",
+      "source": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/arch/loong/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "sys-boot/elilo",
+      "source": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/arch/loong/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "sys-boot/refind",
+      "source": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/loong/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/arch/loong/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "media-libs/libjxl",
+      "source": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "reason": "matoro <matoro_gentoo@matoro.tk> (2023-12-15) Broken on BE and no way to test on LE, mask for now https://github.com/libjxl/libjxl/issues/2433"
+    },
+    {
+      "kind": "mask",
+      "atom": "media-libs/libvpx",
+      "source": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "reason": "matoro <matoro_gentoo@matoro.tk> (2023-11-17) Broken on BE and no way to test on LE, mask for now (#700902)"
+    },
+    {
+      "kind": "mask",
+      "atom": "media-libs/libaom",
+      "source": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "reason": "matoro <matoro_gentoo@matoro.tk> (2023-11-17) Broken on BE and no way to test on LE, mask for now https://bugs.chromium.org/p/aomedia/issues/detail?id=3487"
+    },
+    {
+      "kind": "mask",
+      "atom": "gui-libs/gtk:4",
+      "source": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "reason": "matoro <matoro_gentoo@matoro.tk> (2023-11-17) Broken on BE and no way to test on LE, mask for now https://gitlab.gnome.org/GNOME/gtk/-/issues/5904"
+    },
+    {
+      "kind": "mask",
+      "atom": "sys-auth/nss_ldap",
+      "source": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/mips/package.mask",
+      "reason": "Mask pam_ldap and nss_ldap - openldap dep missing."
+    },
+    {
+      "kind": "mask",
+      "atom": "sys-process/criu",
+      "source": "/var/db/repos/gentoo/profiles/arch/powerpc/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/powerpc/package.mask",
+      "reason": "Georgy Yakovlev <gyakovlev@gentoo.org> (2020-09-22) criu does not work on ppc64be and ppc32"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-cpp/cpp-httplib",
+      "source": "/var/db/repos/gentoo/profiles/arch/ppc/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/ppc/package.mask",
+      "reason": "Alexey Sokolov <alexey+gentoo@asokolov.org> (2026-05-05) New versions dropped support for 32 bits. Bug #973312"
+    },
+    {
+      "kind": "mask",
+      "atom": "media-tv/kodi",
+      "source": "/var/db/repos/gentoo/profiles/arch/riscv/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/riscv/package.mask",
+      "reason": "Yixun Lan <dlan@gentoo.org> (2022-08-27) mask it due to depend on virtual/jre and then unmask in sub-profile accordingly"
+    },
+    {
+      "kind": "mask",
+      "atom": "virtual/jdk",
+      "source": "/var/db/repos/gentoo/profiles/arch/riscv/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/riscv/package.mask",
+      "reason": "Yixun Lan <dlan@gentoo.org> (2022-08-11) dev-java/openjdk support lp64d only, so mask others"
+    },
+    {
+      "kind": "mask",
+      "atom": "virtual/jre",
+      "source": "/var/db/repos/gentoo/profiles/arch/riscv/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/riscv/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/arch/riscv/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-java/openjdk",
+      "source": "/var/db/repos/gentoo/profiles/arch/riscv/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/riscv/package.mask",
+      "reason": "Arthur Zamarin <arthurzam@gentoo.org> (2022-04-30) Bootstrapping was created only for lp64d"
+    },
+    {
+      "kind": "mask",
+      "atom": "net-misc/memcached",
+      "source": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "reason": "matoro <matoro_gentoo@matoro.tk> (2024-06-11) Extensive use of unaligned access, no plans to fix, #636552 https://github.com/memcached/memcached/issues/902"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-libs/libmemcached",
+      "source": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/arch/sparc/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-python/pylibmc",
+      "source": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "reason": "no comment found in /var/db/repos/gentoo/profiles/arch/sparc/package.mask"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-db/mariadb",
+      "source": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "reason": "matoro <matoro_gentoo@matoro.tk> (2023-03-07) Fails tests disastrously.  Present evidence of passing test suite before removing, please."
+    },
+    {
+      "kind": "mask",
+      "atom": "gnome-extra/sushi",
+      "source": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "reason": "Sam James <sam@gentoo.org> (2022-11-24) Pulls in gjs which is broken on sparc, bug #882071"
+    },
+    {
+      "kind": "mask",
+      "atom": "sys-devel/kgcc64",
+      "source": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/sparc/package.mask",
+      "reason": "Raúl Porcel <armin76@gentoo.org> (2014-11-17) Mask sys-devel/kgcc64 since >=gcc-4.4 can build 64bit kernels"
+    },
+    {
+      "kind": "mask",
+      "atom": "dev-cpp/cpp-httplib",
+      "source": "/var/db/repos/gentoo/profiles/arch/x86/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/x86/package.mask",
+      "reason": "Alexey Sokolov <alexey+gentoo@asokolov.org> (2026-05-05) New versions dropped support for 32 bits. Bug #973312"
+    },
+    {
+      "kind": "mask",
+      "atom": "app-arch/lrzip-next",
+      "source": "/var/db/repos/gentoo/profiles/arch/x86/package.mask",
+      "file": "/var/db/repos/gentoo/profiles/arch/x86/package.mask",
+      "reason": "Joshua Kinard <kumba@gentoo.org> (2024-02-27) app-arch/lrzip-next does not support 32-bit arches (#925548)"
+    }
+  ],
+  "guides": [
+    {
+      "key": "masks",
+      "title": "Why a package is masked",
+      "body": [
+        "A mask is Portage refusing a package on purpose.",
+        "It is different from a missing download or a compile error.",
+        "",
+        "Common kinds:",
+        "  package.mask: a hard mask; the distro or your config says no.",
+        "  keyword: the version is not marked stable for your architecture.",
+        "  license: the license is not accepted in your config.",
+        "",
+        "Read the actual reason:",
+        "  gentoo explain masked <package>",
+        "  emerge --ask --verbose <package>",
+        "",
+        "Only override a mask after reading the comment above it."
+      ]
+    },
+    {
+      "key": "keywords",
+      "title": "Stable vs testing keywords",
+      "body": [
+        "Portage keywords say how mature a version is for your architecture.",
+        "",
+        "Common signs:",
+        "  amd64: stable for amd64.",
+        "  ~amd64: testing for amd64.",
+        "  -amd64: explicitly broken for amd64.",
+        "",
+        "Check what Portage wants:",
+        "  emerge --ask --verbose <package>",
+        "",
+        "Allow one testing version:",
+        "  sudo sh -c 'echo \"=category/package-version ~amd64\" >> /etc/portage/package.accept_keywords/local'",
+        "",
+        "Use the exact atom from the emerge error instead of a broad rule."
+      ]
+    },
+    {
+      "key": "unmask",
+      "title": "Unmasking safely",
+      "body": [
+        "Unmasking is not the same as accepting a keyword.",
+        "Hard masks live in package.mask; keyword problems live in acceptance files.",
+        "",
+        "Inspect first:",
+        "  gentoo explain masked <package>",
+        "  emerge --ask --verbose <package>",
+        "",
+        "Hard mask override:",
+        "  sudo sh -c 'echo \"=category/package-version\" >> /etc/portage/package.unmask/local'",
+        "",
+        "Keyword override:",
+        "  sudo sh -c 'echo \"=category/package-version ~amd64\" >> /etc/portage/package.accept_keywords/local'",
+        "",
+        "Then rerun emerge and read the next message."
+      ]
+    },
+    {
+      "key": "use",
+      "title": "USE flags",
+      "body": [
+        "USE flags choose optional features when a package is built.",
+        "Changing them often changes dependencies.",
+        "",
+        "See current flags for a package:",
+        "  emerge --ask --verbose <package>",
+        "",
+        "Set flags for one package:",
+        "  sudo sh -c 'echo \"category/package flag1 -flag2\" >> /etc/portage/package.use/local'",
+        "",
+        "Check what a flag does:",
+        "  equery uses category/package",
+        "",
+        "After changing USE flags, update affected packages:",
+        "  emerge --ask --deep --newuse @world"
+      ]
+    },
+    {
+      "key": "blockers",
+      "title": "Blocked packages",
+      "body": [
+        "A blocker means two packages or slots cannot be installed together.",
+        "",
+        "See the dependency plan:",
+        "  emerge --ask --verbose --tree <package>",
+        "",
+        "Common fixes:",
+        "  Remove or unmerge the conflicting package.",
+        "  Change a USE flag that pulled in the conflict.",
+        "  Install a different slot if both versions are needed.",
+        "",
+        "Be careful with automatic unmasking.",
+        "Read each suggested change before accepting it."
+      ]
+    },
+    {
+      "key": "slots",
+      "title": "Slots",
+      "body": [
+        "A slot lets more than one version of a package stay installed.",
+        "The part after a colon is the slot, such as dev-libs/foo:0 or dev-libs/foo:1.",
+        "",
+        "Look at installed versions:",
+        "  emerge --ask --verbose <package>",
+        "",
+        "If versions conflict, check whether the target package needs a specific slot.",
+        "Do not mask a whole package when only one slot is the problem."
+      ]
+    },
+    {
+      "key": "licenses",
+      "title": "License masks",
+      "body": [
+        "Gentoo can refuse a package because its license is not accepted.",
+        "",
+        "Read the emerge error for the exact license name.",
+        "",
+        "Accept one license for one package:",
+        "  sudo sh -c 'echo \"category/package LICENSE\" >> /etc/portage/package.license/local'",
+        "",
+        "Accept a license globally only when you understand what it means."
+      ]
+    },
+    {
+      "key": "update",
+      "title": "Keeping Gentoo updated",
+      "body": [
+        "Basic update flow:",
+        "  emerge --sync",
+        "  emerge --ask --update --deep --newuse @world",
+        "  emerge --ask @preserved-rebuild",
+        "",
+        "Read the list before accepting.",
+        "Large updates are easier to debug when you do them often."
+      ]
+    },
+    {
+      "key": "db",
+      "title": "gentoo explain database",
+      "body": [
+        "The database is hosted at https://github.com/homu-sys/gentoo-explain-db",
+        "It ships as db.json.gz and db.json.",
+        "",
+        "Download or refresh the compressed database:",
+        "  gentoo explain db fetch",
+        "",
+        "Merge your own /etc/portage entries after fetching:",
+        "  gentoo explain db build",
+        "",
+        "Local database path:",
+        "  gentoo explain db path",
+        "",
+        "After one fetch, lookups work offline."
+      ]
+    }
+  ]
+}
