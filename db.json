@@ -1,7 +1,7 @@
 {
-  "schema": 4,
-  "generated_at": 1795278496,
-  "source": "All Gentoo profile package.mask files plus curated new-user explanations",
+  "schema": 5,
+  "generated_at": 1795278725,
+  "source": "All Gentoo profile package.mask files plus curated recent error guides",
   "messages": {
     "header": "gentoo explain: {package}",
     "no_mask": [
@@ -80,6 +80,18 @@
     {
       "title": "Short forms:",
       "body": "  gentoo <package> checks a masked package.\n  gentoo <guide> opens a guide.\n  gentoo with no arguments lists guides."
+    },
+    {
+      "title": "Save the first real error:",
+      "body": "  The final emerge summary hides the real cause.\n  Keep the first ERROR line, the build.log path, and emerge --info output."
+    },
+    {
+      "title": "Read news before big updates:",
+      "body": "  Many 2026 reports were solved by news items that required a profile, USE, or config change.\n  Run: eselect news read new"
+    },
+    {
+      "title": "Sync before deep debugging:",
+      "body": "  Reports with Unknown snapshot or masked by corruption were often fixed by a clean sync.\n  Run: emaint --auto sync"
     }
   ],
   "entries": [
@@ -12099,6 +12111,393 @@
         "  gentoo path  show the local database path",
         "",
         "Run one fetch while online, then everything works offline."
+      ]
+    },
+    {
+      "key": "recent-errors",
+      "title": "Recent Gentoo errors people hit",
+      "body": [
+        "Common errors from recent 2026 Gentoo reports:",
+        "  missing-keyword  package.unmask did not fix masked by missing keyword",
+        "  hard-mask  stable package suddenly masked by package.mask",
+        "  slot-conflict  two versions pulled into one slot",
+        "  required-use  unsatisfied REQUIRED_USE constraints",
+        "  build-failure  C compiler cannot create executables or toolchain trouble",
+        "  elogind-build  sys-auth/elogind fails to emerge",
+        "  portage-traceback  emerge crashes with Python traceback",
+        "  unmatched-removal-atoms  profile package.mask warning",
+        "  webrsync  emerge-webrsync fails in chroot",
+        "  zlib-ng  zlib and zlib-ng soft block each other",
+        "  python-targets  conflicting PYTHON_SINGLE_TARGET values",
+        "  corruption-snapshot  masked by corruption or unknown LLVM snapshot",
+        "  zswap-lowmem  builds hang with high kernel time on low RAM",
+        "  profile-broken  strange masks after a broken profile symlink",
+        "  rebuild-cycles  updates that seem to never end",
+        "  depclean  depclean fails or wants to remove wanted packages",
+        "",
+        "Run: gentoo <key> to open one."
+      ]
+    },
+    {
+      "key": "missing-keyword",
+      "title": "masked by missing keyword",
+      "body": [
+        "Symptoms from recent keepassxc and emacs reports:",
+        "  All ebuilds that could satisfy the atom have been masked.",
+        "  One package is listed as masked by missing keyword or ~amd64 keyword.",
+        "  package.unmask did not help.",
+        "",
+        "Why:",
+        "  package.unmask only overrides package.mask. It does not accept keywords.",
+        "  ~amd64 means testing is available; ** means the package has no keyword for your arch.",
+        "",
+        "Check:",
+        "  emerge --ask --verbose <package>",
+        "",
+        "Fix for testing keyword:",
+        "  sudo sh -c 'echo \"=category/package-version ~amd64\" >> /etc/portage/package.accept_keywords/local'",
+        "",
+        "Fix for no keyword at all:",
+        "  sudo sh -c 'echo \"=category/package-version **\" >> /etc/portage/package.accept_keywords/local'",
+        "",
+        "Source: 2026-04 gentoo-user keepassxc thread and Gentoo forum unmasking threads."
+      ]
+    },
+    {
+      "key": "hard-mask",
+      "title": "stable package suddenly hard masked",
+      "body": [
+        "Symptoms:",
+        "  The installed package is listed as masked by package.mask.",
+        "  emerge reports installed packages are masked.",
+        "",
+        "Why:",
+        "  A maintainer may mask a package for Qt/toolchain breakage, security, removal, or low maintenance.",
+        "  The mask comment usually names the date and bug.",
+        "",
+        "Check:",
+        "  gentoo explain masked <package>",
+        "  emerge --ask --verbose <package>",
+        "",
+        "Fix:",
+        "  Read the mask reason first.",
+        "  Use package.unmask only after understanding the reason.",
+        "  Consider the alternatives named in the mask comment.",
+        "",
+        "Source: 2026-04 gentoo-user keepassxc hard-mask report."
+      ]
+    },
+    {
+      "key": "slot-conflict",
+      "title": "Multiple package instances in a single slot",
+      "body": [
+        "Symptoms:",
+        "  Multiple package instances within a single package slot have been pulled into the dependency graph.",
+        "  The conflict names a slot such as sys-auth/polkit-qt:0.",
+        "",
+        "Why:",
+        "  Two packages want different versions or USE sets of the same slot.",
+        "  A newer revision may drop support for an older Qt/toolchain combination.",
+        "",
+        "Check:",
+        "  emerge --ask --verbose --tree --update --deep --newuse @world",
+        "  emerge --pretend --verbose-conflicts <package>",
+        "",
+        "Fix:",
+        "  Prefer a full world update instead of a single-package upgrade.",
+        "  Align USE flags, or mask the unwanted version temporarily.",
+        "  If old software needs the old slot, do not upgrade the conflicting slot by itself.",
+        "",
+        "Source: 2026-01 gentoo-user emerge conflict report involving polkit-qt."
+      ]
+    },
+    {
+      "key": "required-use",
+      "title": "Unsatisfied REQUIRED_USE constraints",
+      "body": [
+        "Symptoms:",
+        "  The following REQUIRED_USE flag constraints are unsatisfied.",
+        "  Examples from reports: boot? ( kernel-install ), llvm_slot_21, rust-analyzer? ( rust-src ).",
+        "",
+        "Why:",
+        "  A selected USE flag requires another flag, slot, or target.",
+        "  Sometimes a stale profile or old repo makes a valid combination look impossible.",
+        "",
+        "Check:",
+        "  emerge --ask --verbose <package>",
+        "  emerge --info <package>",
+        "  eselect profile show",
+        "",
+        "Fix:",
+        "  Add the required flag in /etc/portage/package.use/local, or disable the parent flag.",
+        "  Read the constraint literally: a? ( b ) means if a is on, b must also be on.",
+        "  Sync the tree and recheck before broad changes.",
+        "",
+        "Source: 2026-04 systemd-utils report and 2026-01 rust LLVM_SLOT report."
+      ]
+    },
+    {
+      "key": "build-failure",
+      "title": "C compiler cannot create executables",
+      "body": [
+        "Symptoms:",
+        "  Build fails very early with C compiler cannot create executables.",
+        "  Every package fails during an install, or only one package fails.",
+        "",
+        "Check the first real error:",
+        "  Look above the final emerge summary.",
+        "  Read /var/tmp/portage/<category>/<package>-<version>/temp/build.log.",
+        "  emerge --info <package>",
+        "",
+        "Common causes:",
+        "  Bad CFLAGS, CXXFLAGS, LDFLAGS, or CHOST.",
+        "  Broken gcc/binutils toolchain.",
+        "  Missing build dependencies.",
+        "",
+        "Fix:",
+        "  Remove experimental flags and rebuild the toolchain if needed.",
+        "  Do not reinstall the whole system until the build.log cause is known.",
+        "",
+        "Source: 2026-10 Reddit install report where commenters pointed to flags and build.log."
+      ]
+    },
+    {
+      "key": "elogind-build",
+      "title": "elogind fails to emerge",
+      "body": [
+        "Symptoms:",
+        "  sys-auth/elogind fails during emerge and blocks GUI installation.",
+        "",
+        "Check:",
+        "  Read the build.log and the emerge error line.",
+        "  Search the reported Gentoo bug number from the error output.",
+        "",
+        "Temporary workaround reported by users:",
+        "  Install the binary package if available, then investigate the build issue later.",
+        "",
+        "Do not blindly unmask or mask unrelated systemd/elogind packages.",
+        "",
+        "Source: 2026-09 Reddit report referencing Gentoo bug 981933."
+      ]
+    },
+    {
+      "key": "portage-traceback",
+      "title": "emerge Python traceback after Portage update",
+      "body": [
+        "Symptoms:",
+        "  emerge exits with a Python traceback instead of a normal Portage error.",
+        "  The traceback mentions load_emerge_config, _sets, or read_configs.",
+        "",
+        "Check:",
+        "  Save the full traceback.",
+        "  emerge --info",
+        "  Check recently changed files under /etc/portage.",
+        "  Check syntax in make.conf and package.* files.",
+        "",
+        "Fix approach:",
+        "  If the traceback started after a testing Portage update, return to the last working Portage version.",
+        "  Correct the config file named in the traceback when it names one.",
+        "  Report the full traceback if it is a Portage bug.",
+        "",
+        "Source: 2026-08 Reddit report after portage-3.0.82 testing update."
+      ]
+    },
+    {
+      "key": "unmatched-removal-atoms",
+      "title": "Unmatched removal atoms in profile package.mask",
+      "body": [
+        "Symptoms:",
+        "  Unmatched removal atom(s) in profiles/targets/systemd/package.mask.",
+        "  Atoms begin with a minus sign, such as ->=sys-auth/polkit-124.",
+        "",
+        "Meaning:",
+        "  A profile mask file is trying to remove a mask from a parent profile.",
+        "  If the parent no longer has that mask, Portage reports no match.",
+        "",
+        "Check:",
+        "  emerge --info",
+        "  eselect profile show",
+        "  emaint --auto sync",
+        "",
+        "Fix:",
+        "  Sync the repo and make sure the profile symlink is current.",
+        "  Do not edit files under /var/db/repos/gentoo by hand.",
+        "",
+        "Source: Reddit report about systemd profile package.mask removal atoms."
+      ]
+    },
+    {
+      "key": "webrsync",
+      "title": "emerge-webrsync fails in chroot",
+      "body": [
+        "Symptoms:",
+        "  ValueError: No closing quotation.",
+        "  PORTAGE_BIN_PATH: parameter null or not set.",
+        "  mirrorselect or eselect also fail during install.",
+        "",
+        "Check:",
+        "  source /etc/profile",
+        "  Check quoting in /etc/portage/make.conf.",
+        "  Check that the chroot environment variables are still set.",
+        "",
+        "Fix approach:",
+        "  Re-enter the chroot and source the profile again.",
+        "  Correct broken quotes in make.conf.",
+        "  Try emaint --auto sync once the environment is sane.",
+        "",
+        "Source: 2026-07 Reddit first-install report."
+      ]
+    },
+    {
+      "key": "zlib-ng",
+      "title": "zlib and zlib-ng soft block each other",
+      "body": [
+        "Symptoms:",
+        "  sys-libs/zlib soft blocks sys-libs/zlib-ng[compat].",
+        "  zlib-ng[compat] soft blocks sys-libs/zlib.",
+        "  Binary packages ignored due to non-matching USE.",
+        "",
+        "Why:",
+        "  The update is mid-transition between zlib implementations.",
+        "  Pending USE changes or unread news can leave the graph inconsistent.",
+        "",
+        "Check:",
+        "  eselect news read new",
+        "  emerge --pretend --verbose --update --deep --newuse @world",
+        "  emerge --info",
+        "",
+        "Fix approach:",
+        "  Read news, then do a full world update before emerging the single package again.",
+        "  Do not unmerge sys-libs/zlib blindly.",
+        "",
+        "Source: 2026-01 Gentoo forum zlib/zlib-ng report resolved by news and world update."
+      ]
+    },
+    {
+      "key": "python-targets",
+      "title": "Conflicting Python targets",
+      "body": [
+        "Symptoms:",
+        "  Portage asks for python_single_target_python3_12 and python3_11 together.",
+        "  Packages seem to want different Python versions.",
+        "",
+        "Check:",
+        "  emerge --info",
+        "  eselect news read new",
+        "",
+        "Fix approach:",
+        "  Remove hand-written PYTHON_SINGLE_TARGET and PYTHON_TARGETS pins from make.conf and package.use unless needed.",
+        "  Let the current profile choose targets.",
+        "  Sync and retry a full world update.",
+        "",
+        "Source: 2026-02 Gentoo forum Python targets thread."
+      ]
+    },
+    {
+      "key": "corruption-snapshot",
+      "title": "masked by corruption or unknown snapshot",
+      "body": [
+        "Symptoms:",
+        "  emerge says masked by corruption.",
+        "  ebuild fails in depend phase with Unknown snapshot.",
+        "  llvm.org.eclass dies with Unknown snapshot: <version>.",
+        "",
+        "Why:",
+        "  The local repo snapshot is incomplete or inconsistent.",
+        "",
+        "Check:",
+        "  emaint --auto sync",
+        "  emerge --sync",
+        "  emerge -pqv <package>",
+        "",
+        "Fix:",
+        "  Sync again, then retry.",
+        "  If it persists, check repo config and avoid editing ebuilds by hand.",
+        "",
+        "Source: 2026-02/03 Gentoo forum LLVM OpenMP snapshot report."
+      ]
+    },
+    {
+      "key": "zswap-lowmem",
+      "title": "Builds hang on low-memory systems with zswap",
+      "body": [
+        "Symptoms:",
+        "  Large builds such as GCC or Go use lots of RAM, then sit at high kernel time.",
+        "  The build never progresses even after long waits.",
+        "",
+        "Check:",
+        "  free -h",
+        "  ps and top while the build runs.",
+        "  Check kernel and zswap settings.",
+        "",
+        "Fix approach reported by a user:",
+        "  Disable zswap and retry.",
+        "  Reduce parallel jobs with MAKEOPTS=-j1 or a low job count.",
+        "",
+        "Source: 2026-10 Reddit low-end box report."
+      ]
+    },
+    {
+      "key": "profile-broken",
+      "title": "Strange masks after a broken profile symlink",
+      "body": [
+        "Symptoms:",
+        "  Many unrelated REQUIRED_USE, slot, or mask errors after sync.",
+        "  eselect profile list shows no selected profile.",
+        "  emerge hints that there is no valid profile.",
+        "",
+        "Check:",
+        "  eselect profile show",
+        "  ls -l /etc/portage/make.profile",
+        "  ls -l /var/db/repos/gentoo/profiles",
+        "",
+        "Fix:",
+        "  Select a current profile with eselect profile list and eselect profile set <number>.",
+        "  If eselect cannot fix it, repair the symlink manually.",
+        "  Then run a full world update.",
+        "",
+        "Source: 2026-01 gentoo-user report where a stale profile caused cascading errors."
+      ]
+    },
+    {
+      "key": "rebuild-cycles",
+      "title": "Updates that seem to never end",
+      "body": [
+        "Symptoms:",
+        "  Repeated updates keep selecting the same packages.",
+        "  @preserved-rebuild or USE changes appear again.",
+        "",
+        "Check:",
+        "  eselect news read new",
+        "  emerge --pretend --verbose --update --deep --newuse @world",
+        "  emerge --pretend @preserved-rebuild",
+        "  dispatch-conf",
+        "",
+        "Fix approach:",
+        "  Read and apply news items.",
+        "  Finish a normal world update before changing profiles or USE flags broadly.",
+        "  Run @preserved-rebuild when Portage asks for it.",
+        "",
+        "Source: 2026-10 gentoo-user topics about repeating update cycles."
+      ]
+    },
+    {
+      "key": "depclean",
+      "title": "depclean fails or removes wanted packages",
+      "body": [
+        "Symptoms:",
+        "  emerge --depclean errors or proposes removing packages you still use.",
+        "",
+        "Check first:",
+        "  emerge --pretend --depclean --verbose",
+        "  equery depends <package>",
+        "",
+        "Fix approach:",
+        "  Add wanted packages to the world set with emerge --noreplace <package>.",
+        "  Keep kernel sources and manually managed tools.",
+        "  Run revdep-rebuild after depclean if libraries were removed.",
+        "",
+        "Source: 2026-10 gentoo-user depclean report and Portage FAQ."
       ]
     }
   ]
