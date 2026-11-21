@@ -1,6 +1,6 @@
 {
-  "schema": 2,
-  "generated_at": 1795277692,
+  "schema": 3,
+  "generated_at": 1795278282,
   "source": "Gentoo Portage profile masks plus curated new-user explanations",
   "messages": {
     "header": "gentoo explain: {package}",
@@ -29,7 +29,8 @@
     "missing": "No database at {path}. Run: gentoo explain db fetch",
     "guides_header": "Available explanations:",
     "guide_item": "  {key}  {title}",
-    "guide_missing": "No explanation named {name}. Run: gentoo explain guides"
+    "guide_missing": "No explanation named {name}. Run: gentoo explain guides",
+    "lookup_none": "No guide or mask entry matched {query}. Try: gentoo explain guides"
   },
   "tips": [
     {
@@ -75,6 +76,10 @@
     {
       "title": "Mask reason first:",
       "body": "  The comment above a mask usually gives a removal date or bug number.\n  Read it before overriding the mask."
+    },
+    {
+      "title": "Short forms:",
+      "body": "  gentoo <package> checks a masked package.\n  gentoo <guide> opens a guide.\n  gentoo with no arguments lists guides."
     }
   ],
   "entries": [
@@ -2034,6 +2039,28 @@
         "  gentoo explain db path",
         "",
         "After one fetch, lookups work offline."
+      ]
+    },
+    {
+      "key": "quick",
+      "title": "Easy ways to run gentoo explain",
+      "body": [
+        "Shortest forms:",
+        "  gentoo  list guides",
+        "  gentoo <package>  explain why that package is masked",
+        "  gentoo <guide>  open a guide directly",
+        "",
+        "Explicit forms:",
+        "  gentoo explain masked <package>",
+        "  gentoo explain guide <guide>",
+        "  gentoo explain guides",
+        "",
+        "Database commands:",
+        "  gentoo fetch  refresh the downloaded database",
+        "  gentoo rebuild  merge your /etc/portage entries",
+        "  gentoo path  show the local database path",
+        "",
+        "Run one fetch while online, then everything works offline."
       ]
     }
   ]
